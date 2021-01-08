@@ -5,10 +5,10 @@ import { StreamlitPlayer, WrappedStreamlitPlayer } from "./streamlit-player"
 ReactDOM.render(
   <React.StrictMode>
     {/* run for Streamlit */}
-    {/* <WrappedStreamlitPlayer/> */}
+    <WrappedStreamlitPlayer/>
 
     {/* run for development */}
-    <StreamlitPlayer
+    {/* <StreamlitPlayer
         args={{
           url: 'https://www.youtube.com/watch?v=-DP1i2ZU9gk',
           events: [],
@@ -16,7 +16,7 @@ ReactDOM.render(
         }}
         width={200}
         disabled={false}
-    />
+    /> */}
   </React.StrictMode>,
   document.getElementById("root")
 )

@@ -3,6 +3,9 @@ from pprint import pprint
 import pandas as pd
 from models.data import get_data
 from models.bert_sum import BERTSummariser
+from pathlib import Path
+from streamlit.components.v1 import declare_component
+from streamlit_player import st_player
 
 def init_model():
     bert = BERTSummariser()
@@ -48,4 +51,5 @@ if st.button('Pimp my video!'):
         bert_model = BERTSummariser()
         transcript_text = preprocess_data(url)
         transcript_text_summary = bert_model.predict(transcript_text)
+        st_player(url)
         st.write(transcript_text_summary)
