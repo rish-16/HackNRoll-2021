@@ -48,10 +48,26 @@ st.text("")
 
 url = st.text_input('Enter the URL of your video')
 
+transcript_text_summary=""
+
 if st.button('Pimp my video!'):
     with st.spinner("Please wait till we make your mind go brr........"):
         bert_model = init_model()
         transcript_text = preprocess_data(url)
         transcript_text_summary = bert_model.predict(transcript_text)
+        st.text_input(":magnifying_glass: Enter your question for QA Model here")
         st_player(url)
         st.write(transcript_text_summary)
+        # st.markdown(
+        #     """
+        #     <style>
+        #     .body {
+        #         height:500px;
+        #         overflow:scroll
+        #     }
+        #     </style>
+        #     <div class='body'>{}</div>
+        #     """.format(transcript_text_summary)
+        #     ,
+        #     unsafe_allow_html=True,
+        # )
