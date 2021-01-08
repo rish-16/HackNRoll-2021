@@ -1,5 +1,6 @@
 from summarizer import Summarizer
 from pprint import pprint
+import pandas as pd
 
 class BERTSummariser:
     def __init__(self):
@@ -11,18 +12,11 @@ class BERTSummariser:
 bert = BERTSummariser()
 data = {}
 
-with open("text/transcript3.txt") as f:
-    body = f.read().strip().split("\n")
-    body = [body[i].strip().split(" | ") for i in range(len(body))]
+df = None
+sents = df['sentence']
+text = "".join(sents)
     
-for i in range(len(body)):
-    data[body[i][1]] = body[i][0]
-    
-text = ". ".join(list(data.keys()))
-print (text)
-
 preds = bert.predict(text)
-print (preds)
 
 with open("res/result3.txt", "a") as f:
     f.write("".join(preds))
