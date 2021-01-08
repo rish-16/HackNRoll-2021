@@ -24,15 +24,20 @@ def preprocess_data(url):
     for idx, row in df.iterrows():
         sent = row['text'].strip()
 
+        # if first row in sentence
+        if full_sent == "":
+            start = row['start']
+
         if sent[-1] == "." or sent[-1] == "?" or sent[-1] == "!":
             full_sent += sent[:-1] + "."
-            hash_lookup[full_sent] = first_timestamp
+            hash_lookup[full_sent] = {
+                'start': start,
+                'end': row['end']
+            }
             # do something with full sentence and timestamp
             full_sent = ""
         else:
             full_sent += sent + " "
-        
-        first_timestamp = [row['start'], row['end'], row['duration']]
     # combine to form input paragraph
     text = " ".join(list(hash_lookup.keys()))
     return text
