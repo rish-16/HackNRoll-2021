@@ -4,29 +4,35 @@ from data import get_data
 from bert_sum import BERTSummariser
 
 bert = BERTSummariser()
-hash_lookup = {}
 
 df = get_data()
+df.to_csv("./data/source.csv")
 
 sents = df['text']
+hash_lookup = {}
+
 text = ""
 prev = ""
 prev_row = None
 
 for idx, row in df.iterrows():
-    if "." in row['text']:
-        prev += " " + row['text']
+    sent = row['text'].strip()
+
+    if sent[-1] == "." or sent[-1] == "?" or sent[-1] == "!":
+        prev += sent[:-1]
         hash_lookup[prev] = prev_row
         prev = ""
-        prev_row = {row['start'], row['end'], row['duration']}
     else:
-        prev += " " + row['text']
-        prev_row = {row['start'], row['end'], row['duration']}
+        prev += sent[:-1] + " "
         
-text = "".join(list(hash_lookup.keys()))
+    prev_row = {row['start'], row['end'], row['duration']}
+        
+text = " ".join(list(hash_lookup.keys()))
 
-print (text)
+pprint (list(hash_lookup.keys())[:5])
+
 preds = bert.predict(text)
-print (preds)
+proc_preds = preds.split("|")
 
-# with open("res/result5.txt", "a") as f:
+print ()
+pprint (proc_preds[:5])
