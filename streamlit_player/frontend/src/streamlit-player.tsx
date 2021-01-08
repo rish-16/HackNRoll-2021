@@ -10,17 +10,28 @@ import HeightObserver from "./height-observer"
 
 interface ComponentState {
   playerEvents: any;
-  isPlaying: boolean;
+  playing: boolean;
 }
 class StreamlitPlayer extends Component<ComponentProps, ComponentState> {
   player: any;
+  ranges = [
+    {
+      start: 30,
+      end: 35
+    },
+    {
+      start: 40,
+      end: 45
+    },
+  ]
+
 
   constructor(props: ComponentProps) {
     super(props);
     this.player = React.createRef()
     this.state = {
       playerEvents: {},
-      isPlaying: false
+      playing: false
     }
   }
 
@@ -39,11 +50,55 @@ class StreamlitPlayer extends Component<ComponentProps, ComponentState> {
       this.setState({ playerEvents: events })
   }
 
+  getRangeContainingTime = (time: number) => {
+    this.ranges.forEach((range) => {
+      // if time is in range
+      if (time >= range.start && time <= range.end)
+        return range
+
+      if (time < range.start)
+        return null
+      
+    })
+    return null
+  }
+
+  getNextRangeForTime = (time: number) => {
+    for (let i = 0; i < this.ranges.length; i++) {
+      let currRange = this.ranges[i]
+      // if already in a range
+      if (time >= currRange.start && time <= currRange.end)
+        return null
+      
+      // use the first range which has a start larger than time
+      if (time < currRange.start)
+        return currRange
+    }
+    return null
+  }
+
+  // onProgress({ playedSeconds }: { playedSeconds: number }) {
+  onProgress = ({ playedSeconds }: { playedSeconds: number }) => {
+    if (this.player?.current === null || this.player?.current === undefined)
+      return 
+
+    console.log('onProgress')
+    // if (playedSeconds < 30) {
+    //   this.player.current.seekTo(30)
+    //   this.setState({ playing: true })
+    // }
+    let nextRange = this.getNextRangeForTime(playedSeconds)
+    if (nextRange !== null) {
+      this.player.current.seekTo(nextRange.start)
+      this.setState({ playing: true })
+    }
+
+  }
+
   render() {
     const {
       url,
       height,
-      playing,
       loop,
       controls,
       light,
@@ -56,16 +111,18 @@ class StreamlitPlayer extends Component<ComponentProps, ComponentState> {
       time,
     } = this.props.args
 
-    const { playerEvents } = this.state
+      const { playerEvents, playing } = this.state
 
     if (this.player.current !== null && this.player.current !== undefined) {
-      console.log(this.player.current)
-      console.log(this.player.current !== null)
-      this.player.current.seekTo(time)
-      console.log(`seek ${time}`)
+      // console.log(this.player.current)
+      // console.log(this.player.current !== null)
+      // this.player.current.seekTo(time)
+      // console.log(`seek ${time}`)
     }
+    
 
     return (
+      <>
       <HeightObserver onChange={Streamlit.setFrameHeight} fixedHeight={height}>
       <ReactPlayer
         ref={this.player}
@@ -77,7 +134,8 @@ class StreamlitPlayer extends Component<ComponentProps, ComponentState> {
         url={url}
         width="100%"
         height={height || undefined}
-        playing={playing || undefined}
+        // playing={playing || undefined}
+        playing={playing}
         loop={loop || undefined}
         controls={controls || undefined}
         light={light || undefined}
@@ -88,8 +146,11 @@ class StreamlitPlayer extends Component<ComponentProps, ComponentState> {
         playsinline={playInline || undefined}
         config={config || undefined}
         {...playerEvents}
+        onProgress={this.onProgress}
         />
     </HeightObserver>
+
+    </>
     )
   }
 }
