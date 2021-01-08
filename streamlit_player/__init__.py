@@ -33,7 +33,8 @@ def st_player(
     events=None,
     config=None,
     key=None,
-    time=None
+    time=None,
+    ranges=[]
 ):
     """Embed a video or music player.
     
@@ -98,6 +99,7 @@ def st_player(
         config=config,
         key=key,
         time=time,
+        ranges=ranges,
         default={}
     )
 

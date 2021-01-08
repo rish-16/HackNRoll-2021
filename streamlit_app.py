@@ -9,12 +9,14 @@ from streamlit_player import st_player
 from fuzzywuzzy import fuzz
 
 
+hash_lookup = {}
+
+
 def init_model():
     bert = BERTSummariser()
     return bert
 
 def preprocess_data(url):
-    hash_lookup = {}
     df = get_data(url)
 
     raw_text = ""
@@ -24,18 +26,40 @@ def preprocess_data(url):
     for idx, row in df.iterrows():
         sent = row['text'].strip()
 
+        # if first row in sentence
+        if full_sent == "":
+            start = row['start']
+
         if sent[-1] == "." or sent[-1] == "?" or sent[-1] == "!":
             full_sent += sent[:-1] + "."
-            hash_lookup[full_sent] = first_timestamp
+            hash_lookup[full_sent] = {
+                'start': start,
+                'end': row['end']
+            }
             # do something with full sentence and timestamp
             full_sent = ""
         else:
             full_sent += sent + " "
-        
-        first_timestamp = [row['start'], row['end'], row['duration']]
     # combine to form input paragraph
     text = " ".join(list(hash_lookup.keys()))
     return text
+
+def map_preds_to_ranges(preds):
+    preds = preds.split(". ")
+    # query every sentence from output to get timestamp
+    res = []
+
+    print ("Comparison")
+    for sent, ts in hash_lookup.items():
+        for ref_sent in preds:
+            score = fuzz.ratio(sent, ref_sent)
+            if score > 98:
+                res.append({
+                    'start': ts['start'],
+                    'end': ts['end'],
+                })
+    return res
+
 
 
 # st.image('sample.png', width=None)
@@ -55,6 +79,11 @@ if st.button('Pimp my video!'):
         bert_model = init_model()
         transcript_text = preprocess_data(url)
         transcript_text_summary = bert_model.predict(transcript_text)
+
+        ranges = map_preds_to_ranges(transcript_text_summary)
+        st_player(url, ranges=ranges)
+        st.write(transcript_text_summary)
+
         st.text_input(":magnifying_glass: Enter your question for QA Model here")
         st_player(url)
         st.write(transcript_text_summary)
@@ -71,3 +100,5 @@ if st.button('Pimp my video!'):
         #     ,
         #     unsafe_allow_html=True,
         # )
+
+
