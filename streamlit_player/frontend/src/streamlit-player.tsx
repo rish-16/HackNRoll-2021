@@ -15,14 +15,51 @@ interface ComponentState {
 class StreamlitPlayer extends Component<ComponentProps, ComponentState> {
   player: any;
   ranges = [
+    // {
+    //   start: 30,
+    //   end: 35
+    // },
+    // {
+    //   start: 40,
+    //   end: 45
+    // },
     {
-      start: 30,
-      end: 35
+      start: 41,
+      end: 46-1,
     },
     {
-      start: 40,
-      end: 45
+      start: 58,
+      end: 62,
     },
+    {
+      start: 69,
+      end: 72,
+    },
+    {
+      start: 74,
+      end: 78-1,
+    },
+    {
+      start: 80,
+      end: 95,
+    },
+    {
+      start: 102,
+      end: 106,
+    },
+    {
+      start: 110,
+      end: 114,
+    },
+    {
+      start: 133,
+      end: 137,
+    },
+    {
+      start: 147,
+      end: 151,
+    },
+
   ]
 
 
@@ -142,7 +179,8 @@ class StreamlitPlayer extends Component<ComponentProps, ComponentState> {
         volume={volume}
         muted={muted || undefined}
         playbackRate={playbackRate}
-        progressInterval={progressInterval}
+        // progressInterval={progressInterval}
+        progressInterval={200}
         playsinline={playInline || undefined}
         config={config || undefined}
         {...playerEvents}
