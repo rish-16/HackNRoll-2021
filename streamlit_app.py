@@ -79,14 +79,14 @@ if st.button('Pimp my video!'):
         bert_model = init_model()
         transcript_text = preprocess_data(url)
         transcript_text_summary = bert_model.predict(transcript_text)
-
+        
+        st.text_input(":magnifying_glass: Enter your question for QA Model here")
         ranges = map_preds_to_ranges(transcript_text_summary)
         st_player(url, ranges=ranges)
         st.write(transcript_text_summary)
 
-        st.text_input(":magnifying_glass: Enter your question for QA Model here")
-        st_player(url)
-        st.write(transcript_text_summary)
+#         st_player(url)
+#         st.write(transcript_text_summary)
         # st.markdown(
         #     """
         #     <style>
