@@ -32,7 +32,8 @@ def st_player(
     play_inline=None,
     events=None,
     config=None,
-    key=None
+    key=None,
+    time=None
 ):
     """Embed a video or music player.
     
@@ -96,6 +97,7 @@ def st_player(
         events=events,
         config=config,
         key=key,
+        time=time,
         default={}
     )
 
