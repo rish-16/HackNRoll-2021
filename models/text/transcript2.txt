@@ -1,0 +1,897 @@
+00:00 | the following content is provided under
+00:02 | a Creative Commons license your support
+00:05 | will help MIT OpenCourseWare continue to
+00:07 | offer high quality educational resources
+00:09 | for free
+00:10 | to make a donation or view additional
+00:12 | materials from hundreds of MIT courses
+00:15 | visit MIT opencourseware at ocw.mit.edu
+00:30 | all right everyone let's get started so
+00:34 | today's lecture and Wednesdays lecture
+00:37 | we're going to talk about these this
+00:39 | thing called object-oriented programming
+00:41 | and if you haven't programmed before I
+00:43 | think this is a fairly tough concept to
+00:45 | grasp but hopefully with with many many
+00:48 | examples and just by looking at the code
+00:51 | from available F from the lectures
+00:54 | you'll hopefully get the hang of it
+00:56 | quickly so let's talk a little bit about
+01:01 | objects and we've seen objects in Python
+01:05 | so far objects are basically data in
+01:07 | Python so every object that we've seen
+01:10 | has a certain type okay that we know
+01:13 | behind the scenes though every object
+01:15 | has these two additional things one is
+01:18 | some data representation so how Python
+01:21 | represents the object in just behind the
+01:24 | scenes and what are different ways that
+01:27 | you can interact with the object okay so
+01:31 | for example every one of these is a
+01:33 | different object for example this is the
+01:36 | number 1234 it's a specific object that
+01:40 | is of type integer the number 5 is a
+01:43 | different object that's of type integer
+01:45 | and so on we've seen floats we've seen
+01:48 | strings we've seen lists lists and
+01:51 | dictionaries are more complicated object
+01:53 | object types sorry but every object has
+01:57 | a type some sort of way that it's
+01:59 | represented in Python and some ways that
+02:03 | we can interact with them ok so the idea
+02:07 | behind object-oriented programming is
+02:10 | first of all everything in Python is an
+02:12 | object we've said that before and in
+02:14 | this lecture I think we'll really get at
+02:16 | what that means
+02:17 | so we've seen strings integers
+02:19 | dictionaries lists those are all objects
+02:22 | when we did functions we saw that we
+02:24 | could pass as a parameter another
+02:26 | function so functions were also objects
+02:29 | in Python so literally everything in up
+02:30 | in Python is an object so what are the
+02:34 | kinds of things we can do with objects
+02:35 | well once you have a type you can create
+02:38 | a new object that is of some type and
+02:40 | you can create as many
+02:41 | object as you'd like of that particular
+02:43 | type right an integer five an integer
+02:46 | seven those all work in a program once
+02:50 | you have these once you've created these
+02:51 | new objects you can manipulate them so
+02:54 | for a list for example you can append an
+02:56 | item to the end of the list you can
+02:57 | delete an item remove it concatenate two
+03:02 | lists together
+03:03 | so that's ways that you can interact
+03:05 | with objects and the last thing you can
+03:07 | do is you can destroy them so in with
+03:09 | lists we saw explicitly that you can
+03:11 | delete elements from a list or you can
+03:14 | just forget about them by sort of
+03:15 | reassigning a variable to another value
+03:18 | and then at some point Python will will
+03:21 | collect all of these dead objects and
+03:23 | reclaim the memory so let's continue
+03:29 | exploring what objects are so let's say
+03:32 | I have these two separate objects one is
+03:34 | a blue car one is a pink car so objects
+03:37 | are really data abstractions so these
+03:39 | two cars can be created by the same
+03:41 | blueprint okay this is a blueprint for a
+03:44 | car and if an object is the data
+03:47 | abstraction there's two things that this
+03:49 | abstraction is going to capture the
+03:50 | first is some sort of representation
+03:53 | what is going to represent the car what
+03:56 | data represents a car object and the
+03:58 | second is what are ways that we can
+04:00 | interact with the object so if we think
+04:03 | about a car blueprint some general
+04:06 | representation for a car could be the
+04:09 | number of wheels it has the number of
+04:10 | doors it has maybe its length maybe its
+04:12 | height so this is these are all this is
+04:16 | all part of what data represents the car
+04:18 | okay the interface for the car is what
+04:22 | are ways that you can interact with it
+04:24 | so for example you could paint a car
+04:26 | right so you could change its color you
+04:30 | could make you could have the car make a
+04:32 | noise and different cars might make
+04:35 | different noises or you can drive the
+04:37 | car right so these are all ways that you
+04:38 | can interact with a car whereas the
+04:40 | representation are what makes up the car
+04:43 | what abstraction data abstractions make
+04:45 | up the car
+04:48 | let's bring it a little closer to home
+04:50 | by looking at a list so we have this
+04:54 | data type of list right we've worked
+04:57 | with lists before the list with elements
+05:02 | 1 2 3 and 4 is a very specific object
+05:04 | that is of type list okay again we think
+05:08 | about it in terms of two things one is
+05:10 | how what is the data representation of a
+05:12 | list so how does behind the scenes how
+05:14 | does Python see lists and the second is
+05:17 | how do you interact with lists so what
+05:18 | are ways that you can manipulate a list
+05:19 | object once it's created so behind the
+05:23 | scenes you have a list L which is going
+05:26 | to be made up of essentially two things
+05:28 | one is going to be the value at specific
+05:31 | index okay so at index 0 it has the
+05:36 | value 1 right because it's the first
+05:37 | element in the list and the second thing
+05:40 | that represents a list is going to be
+05:43 | this second part which is a pointer and
+05:47 | internally this pointer is going to tell
+05:49 | Python where is the memory location in
+05:54 | the computer where you can access the
+05:56 | element and index 1 so that's it's just
+05:59 | essentially going to be a chain going
+06:02 | from one index to the other and at the
+06:04 | next memory location you have the value
+06:06 | at index 1 and then you have another
+06:09 | pointer that takes you to the location
+06:11 | memory where the index 2 is located and
+06:14 | then index 2 you have the value and then
+06:16 | the next pointer and so on and so on
+06:18 | so this is how Python internally
+06:20 | internally represents a list ok how you
+06:25 | manipulate lists we've done this a lot
+06:27 | right you can get you can index into a
+06:29 | list you can add two lists together you
+06:34 | can get the length you can append to the
+06:36 | end of a list you can sort a list
+06:37 | reverse' lists and so many other things
+06:39 | right so these are all ways that you can
+06:41 | interact with the list object as soon as
+06:43 | you've created it so notice both of
+06:46 | these the internal representation and
+06:48 | how you manipulate lists you don't
+06:50 | actually know internally how these are
+06:53 | represented right how did how did how
+06:56 | did whoever wrote the list class decide
+06:58 | to implement a sort we don't know ok you
+07:00 | also weren't aware
+07:01 | of how these lists were represented
+07:03 | internally and you didn't need to know
+07:04 | that that's the beauty of
+07:06 | object-oriented programming and having
+07:08 | these data abstractions the
+07:11 | representations are private of these
+07:12 | objects and they're only known by what
+07:15 | you can find out how it's done but they
+07:18 | only should be known by whoever
+07:20 | implemented them you as someone who uses
+07:22 | this class doesn't really need to know
+07:24 | how a list is represented internally in
+07:26 | order to be able to use it and to write
+07:28 | cool programs with them okay so so just
+07:34 | final motivation here before we start
+07:36 | writing our own types of objects is the
+07:39 | advantages of object-oriented
+07:40 | programming is really that you're able
+07:43 | to bundle this data bundle some internal
+07:46 | representation and some ways to interact
+07:48 | with a program into these packages these
+07:51 | packages with these packages you can
+07:53 | create objects and all of these objects
+07:56 | are going to behave the exact same way
+07:57 | they're going to have the same internal
+07:58 | representation and the same way that you
+08:01 | can interact with them okay and
+08:03 | ultimately this is going to contribute
+08:05 | to the decomposition and abstraction
+08:08 | ideas that we that we talked about when
+08:11 | we talked about functions and that means
+08:14 | that you're going to be able to write
+08:15 | code that's a lot more reusable and a
+08:18 | lot easier to read in the future okay so
+08:23 | just like when we talked about functions
+08:25 | we're going to sort of separate the code
+08:28 | that we talked about today into code
+08:30 | where you implement you implement a data
+08:34 | type and code where you use use an
+08:38 | object that you create okay so remember
+08:40 | when we talked about functions you had
+08:42 | you had you were thinking about it in
+08:44 | terms of writing a function so you had
+08:46 | to worry about the details of how you
+08:47 | implement a function and then you had to
+08:50 | worry about just how to use a function
+08:51 | right so it's sort of the same idea
+08:53 | today so when you're thinking about
+08:56 | implementing your own datatype you do
+09:03 | that with this thing called a class okay
+09:08 | and when you create a class you're
+09:10 | basically going to figure out what name
+09:11 | you want to give your class and you're
+09:13 | going to define some attributes and
+09:15 | attributes are going to be the data
+09:17 | representation and ways that you can
+09:20 | interact with your object so you as the
+09:22 | programmer of this class are going to
+09:23 | decide how you want people to interact
+09:26 | with your object and what this object
+09:28 | what what data this object is going to
+09:30 | take have so for example someone wrote
+09:34 | code that implements a list class and we
+09:37 | don't actually know how that was done
+09:39 | but we can find out so creating the
+09:44 | class is is is implementing implementing
+09:47 | the class and figuring out data
+09:48 | representation and ways to interact with
+09:50 | the class once that's done you can then
+09:53 | use your class and you use the class by
+09:57 | creating new instances of of the class
+10:01 | so when you create a new instance you
+10:03 | essentially create a new object that has
+10:06 | the type the name of your class and you
+10:09 | can create as many objects as you'd like
+10:10 | you can do all the operations that
+10:13 | you've defined on the class so for
+10:16 | example someone wrote the code to
+10:19 | implement list class and then you can
+10:20 | just use the list class like this so you
+10:22 | can create a new list you can get the
+10:24 | length of the list you can append to the
+10:25 | end of the list and so on and so on
+10:30 | okay so let's start defining our own
+10:35 | types okay so now you're going to define
+10:38 | classes you're going to write classes
+10:41 | which are going to define your own types
+10:42 | of objects so for today's lecture we're
+10:47 | going to define we're going to look at
+10:49 | code that's going to be in the context
+10:50 | of a coordinate object okay and a
+10:53 | coordinate object is essentially going
+10:54 | to be an object that's going to define a
+11:02 | point in an XY plane okay so X comma Y
+11:08 | is going to be a coordinate in a 2d
+11:11 | plane so we're going to write code
+11:13 | that's going to allow us to define that
+11:15 | kind of object so the way we do that is
+11:20 | we have to define a class so we have to
+11:23 | tell Python hey I'm defining my own
+11:24 | object type so you do that with this
+11:26 | class keyword so you say class then you
+11:29 | say the name of your type in this case
+11:32 | we're creating a type called coordinate
+11:33 | just like we had type list type string
+11:36 | and so on this is going to be a type
+11:37 | called coordinate and then in
+11:40 | parentheses here you put what the
+11:42 | parents of the class are for today's
+11:44 | lecture the parent of the classes are
+11:48 | going to be this thing called object an
+11:50 | object is the very basic type in Python
+11:55 | it is the most basic type in Python and
+11:57 | it it implements things like being able
+12:00 | to assign variables so really really
+12:02 | basic operations that you can do with
+12:04 | objects okay so your coordinate is
+12:07 | therefore going to be an object in
+12:09 | Python all right so we've told python we
+12:14 | want to define an object so inside the
+12:17 | class definition we're going to put
+12:18 | attributes so what are attributes
+12:21 | attributes are going to be data and
+12:23 | procedures that belong to the class okay
+12:26 | data are going to be the data
+12:28 | representations and procedures are going
+12:30 | to be ways that we can interact with the
+12:31 | object okay the fact that they belong to
+12:34 | the class means that the data and the
+12:37 | procedures that we write are only going
+12:39 | to work with an object of this type okay
+12:41 | if you try to use any of the data or the
+12:44 | procedures with an object of a different
+12:46 | type you're going to get an error
+12:47 | because these objects these this data
+12:50 | and these these attributes sorry will
+12:54 | will belong to this particular class
+12:56 | okay so the data attributes is what is
+13:03 | the object right what is the data that
+13:05 | makes up the object so for our
+13:07 | coordinate example it's going to be the
+13:09 | X and y values for a coordinate we can
+13:12 | decide that can be in so we can decide
+13:14 | that we can let them be floats but it's
+13:16 | going to have one one value for an for
+13:18 | the x coordinate and one value for the y
+13:19 | coordinate so those are data attributes
+13:25 | and procedure attributes are better
+13:27 | known as methods and you can think of a
+13:30 | method as a function except that it's a
+13:32 | function that only were
+13:33 | with this particular type of object so
+13:37 | with a coordinate object in this case
+13:39 | okay so the methods are going to define
+13:42 | how you can interact with the object so
+13:44 | in a list for example we've said that
+13:46 | you can append an item to the end of the
+13:47 | list we can sort of list things like
+13:49 | that so when you when you're defining
+13:51 | methods you're defining ways that people
+13:53 | can interact with your object so for
+13:55 | example for a coordinated object we can
+13:56 | say that we can take the distance
+13:58 | between two coordinate points okay and
+14:01 | that's going to be a way that you can
+14:02 | interact with two coordinate points and
+14:05 | we and just just to be clear these are
+14:09 | going to belong to this class which
+14:10 | means that if you try to use this
+14:12 | distance method on two lists for example
+14:14 | you're going to get an error because
+14:16 | this distance method was only defined to
+14:18 | work with to coordinate type objects all
+14:23 | right so let's carry on and continue
+14:26 | implementing our class so we've written
+14:29 | this first line so far class coordinate
+14:31 | object so now let's define attributes
+14:34 | first thing we're going to define our
+14:36 | data attributes generally you define
+14:40 | data attributes inside this in it and
+14:44 | this is underscore underscore init
+14:46 | underscore underscore and it's a special
+14:48 | method or function in a class and the
+14:52 | special method tells Python when you
+14:56 | when you implement the special method it
+14:57 | tells Python when you first create an
+14:59 | object of this type call this method or
+15:02 | call this function so how do we do that
+15:07 | so let's implement it so you say def
+15:10 | because d f because it's just a function
+15:13 | the name is the special name in it and
+15:16 | we give it some parameters right just
+15:19 | like any other function
+15:21 | these last two parameters are x and y
+15:25 | which are going to represent the x it's
+15:28 | going to represent how you create a
+15:29 | coordinate object so you give it a value
+15:32 | for the exponent and you give it a value
+15:34 | for the y-coordinate this self however
+15:37 | is a little bit trickier so the self is
+15:40 | going to be a parameter when you define
+15:42 | this class that represents a particular
+15:45 | instance of
+15:47 | of the class okay so we're defining this
+15:50 | coordinate object in sort of a general
+15:53 | way right we don't have a specific
+15:56 | instance yet because we haven't created
+15:57 | an object yet but this self is going to
+16:01 | be sort of a placeholder for any sort of
+16:04 | instance when you create the object so
+16:07 | in the definition of the class whenever
+16:10 | you want to refer to attributes that
+16:12 | belong to an instance you have to use
+16:15 | self dot so this dot notation and the
+16:19 | dot is going to say look for a value X
+16:23 | sorry look for a data attribute X that
+16:26 | belongs to this class so for methods
+16:32 | that belong to the class the first
+16:35 | parameter is always going to be self it
+16:37 | could be named anything you want but
+16:38 | really by convention it's always named
+16:40 | self so try to stick to that and then
+16:44 | any other parameters beyond it are going
+16:46 | to be just parameters as you would put
+16:48 | in a normal function okay in this
+16:52 | particular case we're going to choose to
+16:53 | initialize a data a coordinate object by
+16:56 | two values one for the X and 1 for the Y
+16:59 | and inside this init method we're groups
+17:03 | we're going to have two assignments the
+17:07 | first one says the X data attribute of a
+17:11 | coordinate object I'm going to I'm going
+17:13 | to assign it to whatever was passed in
+17:16 | and the Y data attribute for a
+17:19 | particular object is going to be
+17:21 | assigned whatever Y was passed in
+17:29 | questions so far about how to write this
+17:32 | in it yeah question how do you make sure
+17:41 | that x and y are intz or floats so this
+17:44 | is something that you could write in the
+17:46 | specification so the doc string with the
+17:48 | triple quotes so whoever uses the
+17:50 | function uses the class would then know
+17:53 | that if they do something outside the
+17:55 | specification the code might not work as
+17:56 | expected or you could put in a search
+17:59 | statement inside the the definition of
+18:02 | the in it just to sort of force that
+18:05 | force that to to be true great question
+18:09 | yeah question does the X does this self
+18:15 | X and this X have to be the same name
+18:17 | the answer is no and we're going to see
+18:20 | in the class exercise that you can have
+18:23 | it to be different okay great so this
+18:29 | defines our the way that we create an
+18:31 | object so now let's now we have sort of
+18:36 | a nice nice class it's very simple but
+18:40 | we can start actually creating
+18:41 | coordinate objects okay so when you
+18:44 | create a coordinate objects you're
+18:45 | creating instances of the class so this
+18:49 | line here si is equal to coordinate 3 4
+18:51 | is going to call the init method it's
+18:55 | going to call the init method with X is
+18:57 | equal to 3 and Y is equal to 4 I'm just
+19:02 | going to go over here and I wrote this
+19:05 | previously because notice when we're
+19:10 | calling this method when we're creating
+19:13 | an object here we're only giving it two
+19:14 | parameters but in the init method we
+19:18 | have actually three parameters right we
+19:21 | have these three parameters here but
+19:23 | when we're creating an object we only
+19:24 | give it two parameters and that's okay
+19:26 | because implicitly python is going to
+19:29 | say self is going to be this object see
+19:31 | so just by default okay so when you're
+19:33 | creating a coordinate object you're
+19:35 | you're passing it the very all the
+19:38 | variables except for self
+19:44 | so this line here is going to call the
+19:46 | init and it's going to do every line
+19:48 | inside the unit so it's going to create
+19:50 | an X data attribute for see a Y data
+19:55 | attribute for C and it's going to assign
+19:57 | three and four to those respectively
+20:00 | this next line here is origin equals
+20:04 | coordinate zero zero creates another
+20:06 | object okay
+20:09 | it's another coordinate object whose
+20:12 | value of 4x is zero and whose value for
+20:14 | y is zero okay so now we have to
+20:16 | coordinate objects we can access the
+20:20 | data attributes using this dot notation
+20:22 | and we've seen that before right when
+20:25 | we've worked with lists we'd say
+20:26 | something like L dot append right when
+20:28 | we create a list so the same dot
+20:30 | notation can be used with your own
+20:33 | objects in order to access data
+20:35 | attributes so here this is going to
+20:38 | print three because the x value for for
+20:42 | object C is three and the next line
+20:48 | print Origin X is going to print zero
+20:50 | because the x value for the object
+20:52 | origin is zero okay so we've created
+20:56 | we've created a coordinate object we've
+20:59 | defined the init method so we have a way
+21:01 | to create objects when we use the class
+21:04 | and then we can access the data
+21:06 | attributes but that's kind of lame right
+21:10 | because there isn't anything cool we can
+21:11 | do with it there isn't ways to interact
+21:13 | with this object so let's add some
+21:16 | methods okay remember methods are going
+21:18 | to be are going to be procedural
+21:20 | attributes that allow us to interact
+21:22 | with our object okay methods are like
+21:25 | functions except that there's a couple
+21:28 | differences which you'll see in a moment
+21:29 | and when you're when you're calling
+21:32 | methods you're using the dot the dot
+21:35 | operator like L dot append for example
+21:38 | for lists so let's define now let's go
+21:43 | back to defining our coordinate class
+21:45 | and let's define a method for it so so
+21:48 | far we've defined that part their class
+21:51 | coordinate and an init so we have that
+21:52 | so in this slide we're going to add
+21:55 | this method here so this method here is
+21:59 | going to say I'm going to define a
+22:01 | method called distance and I'm going to
+22:04 | pass in two parameters
+22:06 | remember self the first parameter is
+22:08 | always going to be the the instance of
+22:10 | an object that you're going to perform
+22:12 | the operation on so alway pretty much by
+22:18 | convention it's always named self and
+22:21 | this KNN for this particular method I'm
+22:25 | going to give it another parameter and I
+22:27 | can name this whatever I want I'm naming
+22:29 | it other and this is going to represent
+22:31 | the other coordinate object for which I
+22:34 | want to find the distance from myself
+22:36 | okay so here I'm going to just implement
+22:39 | the Euclidean distance formula which is
+22:42 | X you know x1 minus x2 squared plus y1
+22:47 | minus y2 squared and square root of all
+22:48 | that so that's what I'm doing inside
+22:51 | here okay self and other are coordinate
+22:55 | objects inside this method I have to
+23:01 | refer to the X data attributes of each
+23:05 | object if I want to find the difference
+23:07 | between the two x values from them so
+23:11 | that's why I'm doing self dot X here
+23:13 | right if I just did X I would be
+23:15 | accessing just some variable named X in
+23:18 | in a program which actually isn't even
+23:20 | defined right so you always have to
+23:23 | refer when you're talking about when
+23:24 | when you're when you're as we're
+23:27 | thinking about classes you always have
+23:28 | to refer to whose data attribute do you
+23:30 | want to access okay in this case I want
+23:33 | to access the X data attribute of myself
+23:36 | and I want to subtract the X data
+23:38 | attribute of this other coordinate
+23:40 | square that same for Y square that and
+23:44 | then add those and take the square root
+23:46 | of that so notice this method is pretty
+23:49 | much like a function right you have DF
+23:51 | some name it takes in parameters it does
+23:55 | some stuff and then it returns a value
+23:57 | the only difference is the fact that you
+24:00 | have a self here as the first thing and
+24:02 | the fact that you always have to be
+24:05 | conscious about whose data attributes
+24:07 | you're accessing
+24:10 | okay so you have to use the dot notation
+24:13 | in order to decide whose data attributes
+24:15 | you want access so we've defined the
+24:19 | method here distance okay so this is in
+24:21 | the class definition now how do we use
+24:23 | it so let's assume that the the
+24:27 | definition of distance is up here I
+24:28 | didn't include the code but really all
+24:32 | you need to know is what it takes it
+24:34 | takes itself and another so when you
+24:37 | want to use this method to figure out a
+24:39 | distance between two coordinate objects
+24:41 | this is how you do it so the first line
+24:44 | I create one coordinate object second
+24:47 | line I create another coordinate object
+24:49 | right first one is named C the second
+24:51 | one is named zero these are two separate
+24:53 | objects and I'm going to find the
+24:58 | distance and I want to first call it on
+25:02 | one object so I'm going to say C dot so
+25:05 | I'm using the dot notation to call the
+25:07 | method distance on object C so Python
+25:15 | says this object C is of type coordinate
+25:17 | it's going to look up at the class
+25:19 | coordinate that you defined it's going
+25:21 | to find this method called distance and
+25:22 | then it's going to say what parameters
+25:24 | does it take so it takes another
+25:26 | parameter right for the other and then
+25:29 | in the parenthesis I just have to give
+25:32 | it this other parameter an easier way to
+25:36 | see what happens is by looking at what
+25:40 | this line here is equivalent to okay so
+25:45 | this let the third line here print C
+25:48 | distance 0 is equivalent to this one on
+25:50 | the right and this one on the right
+25:52 | essentially says what's the name of the
+25:55 | class dot dot notation what's the method
+25:59 | you want to call and then in parenthesis
+26:02 | you give it all of the variables
+26:04 | including self okay so in this case
+26:07 | you're explicitly telling Python that
+26:10 | self is C and other is 0 right so this
+26:16 | is a little bit easier to understand
+26:18 | like that
+26:21 | but it's a little cumbersome because you
+26:24 | always have to write coordinate dot
+26:26 | coordinate dot coordinate for every data
+26:28 | attribute you might want to access for
+26:29 | every procedural attribute you want
+26:31 | might want to access so it's really so
+26:34 | by convention it's a lot easier to do
+26:37 | the one on the left and as I mentioned
+26:40 | Python implicitly says if you're doing
+26:43 | the one on the left you can call this
+26:46 | method on a particular object and it's
+26:48 | going to look up the type of the object
+26:49 | and it's going to essentially convert
+26:51 | this on the left to the one on the right
+26:53 | ok and this is what you've been using so
+26:56 | far so when you create a list you say L
+26:57 | is equal to one two and then you say L
+27:00 | dot append you know three or whatever so
+27:05 | we've been using this notation on the
+27:08 | left pretty much from from the beginning
+27:11 | class so we have a coordinate class we
+27:17 | can create a coordinate object we can
+27:19 | get the distance between two objects as
+27:21 | you're using the class if you wanted to
+27:23 | use this coordinate class and you were
+27:26 | maybe debugging at some point you know a
+27:29 | lot of you probably use print as a debug
+27:30 | statement right and maybe you want to
+27:32 | print the value of of a coordinate
+27:36 | object so if you create a coordinate
+27:38 | object C is equal to coordinate 3/4
+27:40 | right that's what we've done so far if
+27:42 | you print C you get this sorry you get
+27:46 | this funny message very uninformative
+27:49 | right it basically says well C is an
+27:52 | object of type coordinate at this memory
+27:55 | location in in in the computer which is
+28:00 | not what you wanted at all right maybe
+28:02 | you wanted to know what the values for x
+28:03 | and y were that would be a lot more
+28:05 | informative okay so so by default when
+28:09 | you create an on your own type when you
+28:12 | print the type when you print the object
+28:14 | of that type Python tells you this sort
+28:16 | of information which is not what you
+28:18 | want so what you need to do is you need
+28:21 | to define your own method that tells
+28:24 | Python what to do when you call print on
+28:27 | an object of this type so this is going
+28:32 | to be a special method
+28:33 | just like in it is because it starts and
+28:36 | ends with double underscores and the the
+28:40 | name of the method is underscore
+28:41 | underscore STR underscore underscore and
+28:43 | if you define this method in your class
+28:46 | that tells Python hey when you see a
+28:49 | print statement that's on an object of
+28:51 | type coordinate call this method look
+28:54 | what it does and do everything that's
+28:55 | inside it okay and you can choose
+28:59 | whatever you you can choose to make it
+29:01 | do whatever you want inside your your
+29:03 | definition of STR in this case let's say
+29:06 | when we print a coordinate object we're
+29:08 | going to print it's x and y values
+29:10 | surrounded by angle brackets that seems
+29:13 | reasonable right so then from now on
+29:16 | when you when you print coordinate
+29:19 | objects you're going to see things like
+29:21 | this which is a lot more informative all
+29:25 | right so how do we define this so so far
+29:28 | we've defined all that and the last part
+29:32 | is going to be new okay so we define the
+29:35 | anit and the distance and let's define
+29:37 | this STR so underscore underscore STR
+29:44 | underscore underscore is a method it's
+29:47 | only going to taste take self because
+29:50 | you're just calling print on the object
+29:52 | itself okay there's no other are there's
+29:55 | no other parameters to it STR has to
+29:58 | return a string and in this particular
+30:01 | case we're going to return the string
+30:04 | that's the angle brackets concatenated
+30:07 | with the x-value of the object self x
+30:11 | concatenated with a comma concatenated
+30:13 | with the y value of this particular
+30:16 | instance of an object self dot y and
+30:19 | then concatenated with the angle
+30:20 | brackets so now anytime you have print
+30:25 | on an object of type coordinate you're
+30:26 | going to call this special method STR if
+30:29 | it's implemented in your in your code
+30:31 | any questions
+30:37 | okay so let's try to wrap our hand
+30:44 | around types and classes because we've
+30:46 | seen a lot today okay
+30:49 | let's create a coordinate object assign
+30:54 | it three four as we have been and assign
+30:58 | it to variable C we've implemented the
+31:01 | STR method so when we print C it's going
+31:05 | to print out this nice three comma four
+31:06 | in angle brackets if we print the type
+31:11 | of C this is actually going to give us
+31:13 | class Maine coordinate which tells us
+31:17 | that C is going to be an object that's
+31:21 | of that that's that is sorry C is going
+31:26 | to be an object that is of type class
+31:29 | coordinate if we look at coordinate as a
+31:35 | class if we print what coordinate is
+31:38 | coordinate is a class right so this is
+31:41 | what python tells us if we print
+31:42 | coordinate it's a class named coordinate
+31:44 | and if we print the type of a coordinate
+31:48 | well that's just going to be a type so
+31:50 | class is going to be a type so you're
+31:51 | defining the type of an object okay if
+31:55 | you'd like to figure out the type the if
+31:59 | you'd like to figure out whether a
+32:00 | particular object is an instance of a
+32:02 | particular class you use this special
+32:04 | function called is instance so if you
+32:07 | print is instance C comma coordinate
+32:09 | this is going to print true because C is
+32:12 | an object that is of type coordinate
+32:19 | okay
+32:22 | couple more words on these special
+32:24 | operators so these special operators
+32:27 | allow you to customize your classes
+32:29 | which can add some cool functionality to
+32:31 | them so these special operators are
+32:35 | going to be things like addition
+32:38 | subtraction using the equal equal sign
+32:40 | greater than less than length and so on
+32:42 | and so on
+32:43 | so just like STR if you implement any of
+32:48 | these in your classes this is going to
+32:51 | tell Python so for example if we've
+32:53 | implemented this underscore underscore
+32:56 | add underscore underscore in our in our
+32:59 | class this is going to tell Python when
+33:01 | you use this plus operator between two
+33:03 | objects of type coordinate to call this
+33:06 | method if you have not implemented this
+33:10 | method and you try to add two objects of
+33:12 | type coordinate you're going to get an
+33:13 | error because python doesn't actually
+33:14 | know right off the bat how to add to
+33:16 | coordinate objects right you have to
+33:18 | tell it how to do that and you tell it
+33:20 | how to do that by implementing this
+33:22 | special special method
+33:25 | same with subtract same with equal so if
+33:28 | you want to figure out whether two
+33:29 | objects are equal and when you implement
+33:32 | these methods in your in your own class
+33:34 | you can decide exactly what you want to
+33:37 | do so what happens when you add to
+33:40 | coordinate objects you just add the X
+33:42 | values you just add the Y values do you
+33:44 | add them both together do you do
+33:45 | whatever you'd like to do and then you
+33:48 | document what you've decided so let's
+33:51 | create a fraction object okay so we've
+33:54 | looked at a coordinate we've saw sort of
+33:56 | a higher level car object let's look at
+33:58 | a fraction object fraction object is
+34:02 | going to be is going to represent a
+34:05 | number that's going to be a numerator
+34:08 | / a denominator okay
+34:11 | so that's going to be a fraction object
+34:13 | so the way I've decided to internally
+34:16 | represent a fraction object is with two
+34:19 | numbers and I've decided that I will not
+34:23 | let them be floats they have to be
+34:24 | integers
+34:24 | hence the assert over here
+34:29 | so inside the anit I've decided I'm
+34:31 | going to represent the two numbers with
+34:33 | sorry I'm going to represent my fraction
+34:36 | with two numbers one for the numerator
+34:38 | and one for the denominator so when I
+34:42 | create a fraction object I'm going to
+34:43 | pass in a numerator and a denominator
+34:45 | and a particular instance is going to
+34:51 | have self numerator and self denominator
+34:53 | as its data attributes and I'm assigning
+34:56 | those to be whatever's passed into my in
+34:59 | it since I plan on debugging this this
+35:05 | code maybe possibly sometime in the
+35:07 | future I'm also including an STR method
+35:09 | and the STR method is going to print a
+35:12 | nice you know a nice-looking a string
+35:19 | that's going to represent the numerator
+35:22 | and then a slash and then the
+35:25 | denominator and then I've also
+35:30 | implemented some other special methods
+35:32 | how do I add two fractions how do I
+35:35 | subtract two FLAC fractions and how do I
+35:38 | convert a fraction to a float okay the
+35:42 | add and subtract are almost the same so
+35:44 | let's look at the add for the moment how
+35:48 | do we add two fractions right we're
+35:52 | going to take self which is the which is
+35:58 | the instance of an object that I want to
+35:59 | do the add operation on and we're going
+36:02 | to take other which is the other
+36:04 | instance of an object that I want to do
+36:06 | the operation on so the addition and I'm
+36:09 | going to figure out the new top so the
+36:11 | new top of the of the resulting fraction
+36:14 | so it's the it's my numerator multiplied
+36:18 | by the other denominator plus my
+36:21 | denominator multiplied by the other
+36:23 | numerator and then divided by the
+36:24 | multiplication of the two denominators
+36:26 | so the top is going to be that the
+36:30 | bottom is going to be that notice that
+36:32 | we're using self dot right once again
+36:35 | we're trying to access the data
+36:36 | attributes of each different instance
+36:38 | right of myself and the other object
+36:41 | that I'm working with
+36:42 | so that's why I have to do self dot here
+36:45 | once I figure out the top and the bottom
+36:48 | of the Edition I'm going to return and
+36:53 | here notice I'm returning a fraction
+36:56 | object okay it's not a number it's not a
+36:59 | float it's not an integer it's a new
+37:01 | object that is of the exact same type as
+37:03 | the class that I'm implementing okay so
+37:07 | as as it's the same type of object then
+37:10 | on the return value I can do all of the
+37:12 | exact same operations that I can do on a
+37:14 | regular fraction object okay sub is
+37:18 | going to be the same I'm returning a
+37:20 | fraction object float is just going to
+37:27 | do the division for me so it's going to
+37:30 | take the numerator and then divide it by
+37:32 | the denominator just just divide the
+37:35 | numbers and then I'm divide defining
+37:38 | here my own function my own method
+37:40 | called inverse and this is just going to
+37:43 | take the inverse of the instance I'm
+37:45 | calling this method on and so it's going
+37:47 | to also return a new fraction object
+37:50 | that just has the denominator as the top
+37:53 | part and the numerator as the bottom
+37:55 | part so then we have some code here so
+38:00 | that's how that's how I implement my
+38:02 | fraction object so now let's use it and
+38:05 | see what it gives us a is equal to
+38:08 | fraction 1/4 this is going to be
+38:15 | [Music]
+38:20 | this is going to be one over for for a
+38:26 | and B is going to be three over four
+38:34 | when I do C notice I'm using the plus
+38:40 | operator between two fraction objects
+38:42 | right and B are fraction objects so
+38:44 | Python is going to say okay is there an
+38:47 | underscore underscore ad underscore
+38:48 | underscore method implemented it is and
+38:51 | it's just going to do whatever is inside
+38:54 | here so it's going to say self done
+38:55 | numerator plus other denominator it's
+38:58 | going to calculate the top and the
+38:59 | bottom it's going to turn a new fraction
+39:00 | object so this is going to be 4 plus 4
+39:11 | divided by I'm sorry
+39:20 | four plus 12 divided by 16 okay and 16
+39:25 | over 16 so see as a fraction object is
+39:29 | going to be 16 for the numerator and 16
+39:33 | for the denominator right because it's a
+39:35 | fraction object if I print C it should
+39:44 | print 16 over 16 so we can even run it
+39:47 | so it prints 16 over 16 if I print float
+39:51 | C so this special method float here is
+39:54 | going to say is there a method that
+39:55 | converts a fraction to a float and there
+39:59 | is it's this one implemented right here
+40:01 | so it's just going to divide the two
+40:03 | numbers top and bottom which gives me 1
+40:05 | so it's this one here and here notice
+40:10 | I'm calling I'm doing the exact same
+40:12 | method call except I'm doing it the
+40:14 | other way where you type in the name of
+40:16 | the method the name of the class name of
+40:19 | the method and then what you're calling
+40:21 | it on and this gives the exact same
+40:23 | value here 1.0 and then here i'm calling
+40:28 | the method inverse on object b which is
+40:32 | going to invert 3 over 4 to be 4 over 3
+40:35 | and then i'm converting it to a float
+40:38 | and then i'm printing the value so it
+40:40 | gives me 1 point 3 3 so take a look at
+40:44 | this take a look at this code in more
+40:49 | detail and and see if you can trace
+40:52 | through all of those different things
+40:53 | and see if you can also write your own
+40:55 | new fraction objects ok so last slide
+40:59 | power of object-oriented programming is
+41:02 | that you can bundle together objects
+41:04 | that have the exact same type and all of
+41:06 | these objects you know are going to have
+41:07 | the same data representation and the
+41:09 | same methods that you can do on them and
+41:12 | ultimately you're going to be building
+41:15 | these layers of abstractions you're
+41:17 | going to be building on a basic object
+41:19 | type in Python you're going to be you're
+41:23 | going to have integer objects float
+41:25 | objects on top of those you can create
+41:28 | lists dictionaries and on top of those
+41:30 | you can even create your own object
+41:32 | types as we saw in your
+41:34 | in this lecture today
