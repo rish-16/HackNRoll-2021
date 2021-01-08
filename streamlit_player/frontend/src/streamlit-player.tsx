@@ -14,53 +14,7 @@ interface ComponentState {
 }
 class StreamlitPlayer extends Component<ComponentProps, ComponentState> {
   player: any;
-  ranges = [
-    // {
-    //   start: 30,
-    //   end: 35
-    // },
-    // {
-    //   start: 40,
-    //   end: 45
-    // },
-    {
-      start: 41,
-      end: 46-1,
-    },
-    {
-      start: 58,
-      end: 62,
-    },
-    {
-      start: 69,
-      end: 72,
-    },
-    {
-      start: 74,
-      end: 78-1,
-    },
-    {
-      start: 80,
-      end: 95,
-    },
-    {
-      start: 102,
-      end: 106,
-    },
-    {
-      start: 110,
-      end: 114,
-    },
-    {
-      start: 133,
-      end: 137,
-    },
-    {
-      start: 147,
-      end: 151,
-    },
 
-  ]
 
 
   constructor(props: ComponentProps) {
@@ -88,7 +42,8 @@ class StreamlitPlayer extends Component<ComponentProps, ComponentState> {
   }
 
   getRangeContainingTime = (time: number) => {
-    this.ranges.forEach((range) => {
+    const { ranges } = this.props.args
+    ranges.forEach((range: any) => {
       // if time is in range
       if (time >= range.start && time <= range.end)
         return range
@@ -101,8 +56,9 @@ class StreamlitPlayer extends Component<ComponentProps, ComponentState> {
   }
 
   getNextRangeForTime = (time: number) => {
-    for (let i = 0; i < this.ranges.length; i++) {
-      let currRange = this.ranges[i]
+    const { ranges } = this.props.args
+    for (let i = 0; i < ranges.length; i++) {
+      let currRange = ranges[i]
       // if already in a range
       if (time >= currRange.start && time <= currRange.end)
         return null
