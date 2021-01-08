@@ -19,6 +19,7 @@ def get_transcript(video_id):
 def process_transcript(transcript):
     transcript_df = pd.DataFrame(transcript)
     transcript_df = transcript_df.replace('\n', ' ', regex=True)
+    transcript_df = transcript_df.replace("\"", "")
     transcript_df['end'] = transcript_df['start'] + transcript_df['duration']
     return transcript_df
 
