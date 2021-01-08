@@ -2,7 +2,7 @@ from collections import namedtuple
 from pathlib import Path
 from streamlit.components.v1 import declare_component
 
-_RELEASE = False
+_RELEASE = True
 
 if not _RELEASE:
     _component_func = declare_component("streamlit_player", url="http://localhost:3001")
