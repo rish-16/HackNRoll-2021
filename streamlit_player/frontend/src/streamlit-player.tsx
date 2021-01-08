@@ -126,8 +126,11 @@ class StreamlitPlayer extends Component<ComponentProps, ComponentState> {
       let prevEndPercentage = 0;
 
       // const hotColor = '#f29492'
-      const hotColor = 'rgba(192, 57, 43,1.0)'
-      const coldColor = '#114357'
+      // const hotColor = 'rgba(192, 57, 43,1.0)'
+      // const hotColor = 'rgba(192, 57, 43,1.0)'
+      const hotColor = '#E8E419'
+      // const coldColor = '#114357'
+      const coldColor = '#1F958B'
 
       for (let range of ranges) {
         let startPercentage = range.start / duration * 100
