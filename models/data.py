@@ -23,11 +23,11 @@ def process_transcript(transcript):
     return transcript_df
 
 def get_data():
-    url = "https://www.youtube.com/watch?v=QyElbUb1QjI"
+    url = "https://www.youtube.com/watch?v=-DP1i2ZU9gk&list=PLUl4u3cNGP63WbdFxL8giv4yhgdMGaZNA&index=27"
     video_id = extract_video_id(url)
     transcript = get_transcript(video_id)
     transcript_df = process_transcript(transcript)
-    print(transcript_df.columns)
+    return transcript_df
 
 if __name__ == "__main__":
     get_data()
