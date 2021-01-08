@@ -6,7 +6,7 @@ from fuzzywuzzy import fuzz
 
 bert = BERTSummariser()
 
-URL = "https://www.youtube.com/watch?v=-DP1i2ZU9gk&list=PLUl4u3cNGP63WbdFxL8giv4yhgdMGaZNA&index=27"
+URL = "https://www.youtube.com/watch?v=Hu4Yvq-g7_Y"
 df = get_data(URL)
 
 hash_lookup = {}
