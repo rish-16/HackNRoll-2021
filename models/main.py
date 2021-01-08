@@ -2,37 +2,49 @@ from pprint import pprint
 import pandas as pd
 from data import get_data
 from bert_sum import BERTSummariser
+from fuzzywuzzy import fuzz
 
 bert = BERTSummariser()
 
-df = get_data()
-df.to_csv("./data/source.csv")
+URL = "https://www.youtube.com/watch?v=-DP1i2ZU9gk&list=PLUl4u3cNGP63WbdFxL8giv4yhgdMGaZNA&index=27"
+df = get_data(URL)
 
-sents = df['text']
 hash_lookup = {}
 
-text = ""
-prev = ""
-prev_row = None
+raw_text = ""
+full_sent = ""
+first_timesteamp = None
 
+print ("Mapping")
 for idx, row in df.iterrows():
     sent = row['text'].strip()
 
     if sent[-1] == "." or sent[-1] == "?" or sent[-1] == "!":
-        prev += sent[:-1]
-        hash_lookup[prev] = prev_row
-        prev = ""
+        full_sent += sent[:-1] + "."
+        hash_lookup[full_sent] = first_timesteamp
+        # do something with full sentence and timestamp
+        full_sent = ""
     else:
-        prev += sent[:-1] + " "
-        
-    prev_row = {row['start'], row['end'], row['duration']}
-        
+        full_sent += sent + " "
+    
+    first_timesteamp = [row['start'], row['end'], row['duration']]
+    
+# combine to form input paragraph
 text = " ".join(list(hash_lookup.keys()))
 
-pprint (list(hash_lookup.keys())[:5])
-
+# split outputs by delimiter
+print ("Prediction")
 preds = bert.predict(text)
-proc_preds = preds.split("|")
+preds = preds.split(". ")
 
-print ()
-pprint (proc_preds[:5])
+# query every sentence from output to get timestamp
+res = []
+
+print ("Comparison")
+for sent, ts in hash_lookup.items():
+    for ref_sent in preds:
+        score = fuzz.ratio(sent, ref_sent)
+        if score > 98:
+            res.append([sent, ts])
+            
+print (res)
