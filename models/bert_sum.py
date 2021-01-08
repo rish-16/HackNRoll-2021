@@ -5,4 +5,4 @@ class BERTSummariser:
         self.model = Summarizer()
         
     def predict(self, body):
-        return self.model(body, ratio=0.4)
+        return self.model(body, ratio=0.2)

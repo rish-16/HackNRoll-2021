@@ -22,8 +22,8 @@ def process_transcript(transcript):
     transcript_df['end'] = transcript_df['start'] + transcript_df['duration']
     return transcript_df
 
-def get_data():
-    url = "https://www.youtube.com/watch?v=-DP1i2ZU9gk&list=PLUl4u3cNGP63WbdFxL8giv4yhgdMGaZNA&index=27"
+def get_data(url):
+    # url = "https://www.youtube.com/watch?v=-DP1i2ZU9gk&list=PLUl4u3cNGP63WbdFxL8giv4yhgdMGaZNA&index=27"
     video_id = extract_video_id(url)
     transcript = get_transcript(video_id)
     transcript_df = process_transcript(transcript)
