@@ -85,7 +85,9 @@ if st.button('Pimp my video!'):
         transcript_text_summary = bert_summarizer.predict(transcript_text)
         ranges = map_preds_to_ranges(transcript_text_summary)
         st_player(url, ranges=ranges)
-        st.write(transcript_text_summary)
+
+st.subheader("Video Summary")
+st.write(transcript_text_summary)
 
 st.header('Live Query : Ask me Anything')
 
@@ -95,4 +97,5 @@ if st.button("Quiz me! I'm Ready"):
     transcript_text = preprocess_data(url)
     bert_qa = BERTQA(transcript_text)
     answer = bert_qa.predict(user_question)
-    st.write(answer)
+    st.write("I think it is" + answer)
+
