@@ -23,6 +23,8 @@ The frontend runs custom React components for video manipulation. All this proce
 
 The following diagram presents a high-level overview of our system design and various tech stack components.
 
+![](https://github.com/rish-16/HackNRoll-2021/blob/main/HacknRoll.png)
+
 ## Challenges we ran into
 **FRONTEND**
 Streamlit, our primary data visualisation tool, has issues when caching models, predictions, and general page activity. We had to find _hacky_ methods to ensure low latency, near real-time inference, and smooth user experience.
