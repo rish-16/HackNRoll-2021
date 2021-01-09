@@ -13,9 +13,9 @@ from fuzzywuzzy import fuzz
 hash_lookup = {}
 
 
-def init_model():
+def init_model(transcript_text):
     bert_summarizer = BERTSummariser()
-    bert_qa = BERTQA()
+    bert_qa = BERTQA(transcript_text)
     return bert_summarizer, bert_qa
 
 def preprocess_data(url):
@@ -78,15 +78,17 @@ transcript_text_summary=""
 
 if st.button('Pimp my video!'):
     with st.spinner("Please wait till we make your mind go brr........"):
-        bert_summarizer, bert_qa = init_model()
         transcript_text = preprocess_data(url)
+        bert_summarizer, bert_qa = init_model(transcript_text)
         transcript_text_summary = bert_summarizer.predict(transcript_text)
         
-        st.subheader('BERT Question Answering Model: Query')
-        user_question = st.text_input(":magnifying_glass: Enter your question for QA Model here")
-        answer = bert_qa.predict(user_question)
-        st.subheader('Response / Context')
-        st.write(answer)
+
         ranges = map_preds_to_ranges(transcript_text_summary)
         st_player(url, ranges=ranges)
         st.write(transcript_text_summary)
+
+        st.subheader('BERT Question Answering Model')
+        user_question = st.text_input(":magnifying_glass: Enter your question for QA Model here")
+        if st.button('Tell me fast!!!'):
+            answer = bert_qa.predict(user_question)
+            st.write(answer)
