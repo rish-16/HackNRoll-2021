@@ -86,10 +86,10 @@ if st.button('Pimp my video!'):
         st_player(url, ranges=ranges)
         st.write(transcript_text_summary)
 
-if st.button('Live Queries'):
-    transcript_text = preprocess_data(url)
-    bert_qa = BERTQA(transcript_text)
-    st.subheader('BERT Question Answering Model')
-    user_question = st.text_input(":magnifying_glass: Enter your question for QA Model here")
-    answer = bert_qa.predict(user_question)
-    st.write(answer)
+#if st.button('Live Queries'):
+transcript_text = preprocess_data(url)
+bert_qa = BERTQA(transcript_text)
+st.subheader('BERT Question Answering Model')
+user_question = st.text_input("Enter your question for QA Model here")
+answer = bert_qa.predict(str(user_question))
+st.write(answer)
