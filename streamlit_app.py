@@ -61,7 +61,6 @@ def map_preds_to_ranges(preds):
                 })
     return res
 
-@st.cache
 def get_summary(bert_summarizer, transcript_text):
     return bert_summarizer.predict(transcript_text)
 # st.image('sample.png', width=None)
@@ -89,9 +88,7 @@ if st.button('Pimp my video!'):
         ranges = map_preds_to_ranges(transcript_text_summary)
         st_player(url, ranges=ranges)
 
-transcript_text_summary = get_summary(bert_summarizer, transcript_text)
-st.subheader("Video Summary")
-st.write(transcript_text_summary)
+
 
 st.header('Live Query : Ask me Anything')
 
@@ -99,6 +96,9 @@ user_question = st.text_input("What do you want know today ?")
 
 if st.button("Quiz me! I'm Ready"):
     bert_qa = BERTQA(transcript_text)
+    transcript_text_summary = get_summary(bert_summarizer, transcript_text)
     answer = bert_qa.predict(user_question)
     st.write("I think it is " + answer)
+    st.subheader("Video Summary")
+    st.write(transcript_text_summary)
 
