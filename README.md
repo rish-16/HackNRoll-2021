@@ -4,7 +4,7 @@ Submission for [NUS Hack&Roll 2021](https://hacknroll.nushackers.org) by Rish, A
 
 ---
 
-![img]()
+![](https://github.com/rish-16/HackNRoll-2021/blob/main/logo.png)
 
 ## Inspiration
 Let's be honest -- we've all had to sit through boring online lectures and seminars at some point in our lives. We're talking about the fillers, silence, and other unwanted disturbances -- like the Professor who talks about their love for gardening during a Data Structures lecture -- in long videos that we'd obviously skip through using arrow keys.
