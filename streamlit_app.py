@@ -62,7 +62,6 @@ def map_preds_to_ranges(preds):
     return res
 
 
-
 # st.image('sample.png', width=None)
 # st.# %% [markdown]('Hello from SUM.ly')
 st.markdown('# Hello from SUM.ly :wave:')
@@ -75,21 +74,25 @@ url = st.text_input('Enter the URL of your video')
 
 transcript_text_summary=""
 
+st.text("")
+st.text("")
+
+st.header('Video Highlights')
 if st.button('Pimp my video!'):
-    with st.spinner("Please wait till we make your mind go brr........"):
+    with st.spinner("Please wait till we make your mind go berrrrttt........"):
         transcript_text = preprocess_data(url)
         bert_summarizer = init_model()
         transcript_text_summary = bert_summarizer.predict(transcript_text)
-        
-
         ranges = map_preds_to_ranges(transcript_text_summary)
         st_player(url, ranges=ranges)
         st.write(transcript_text_summary)
 
-#if st.button('Live Queries'):
-transcript_text = preprocess_data(url)
-bert_qa = BERTQA(transcript_text)
-st.subheader('BERT Question Answering Model')
-user_question = st.text_input("Enter your question for QA Model here")
-answer = bert_qa.predict(str(user_question))
-st.write(answer)
+st.header('Live Query : Ask me Anything')
+
+user_question = st.text_input("What do you want know today ?")
+
+if st.button("Quiz me! I'm Ready"):
+    transcript_text = preprocess_data(url)
+    bert_qa = BERTQA(transcript_text)
+    answer = bert_qa.predict(user_question)
+    st.write(answer)
