@@ -2,8 +2,6 @@
 
 Submission for [NUS Hack&Roll 2021](https://hacknroll.nushackers.org) by Rish, Abhi, and Barnett. 
 
----
-
 ![](https://github.com/rish-16/HackNRoll-2021/blob/main/logo.png)
 
 ## Inspiration
