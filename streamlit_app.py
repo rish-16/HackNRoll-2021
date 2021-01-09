@@ -3,6 +3,7 @@ from pprint import pprint
 import pandas as pd
 from models.data import get_data
 from models.bert_sum import BERTSummariser
+from models.bert_qa import BERTQA
 from pathlib import Path
 from streamlit.components.v1 import declare_component
 from streamlit_player import st_player
@@ -13,8 +14,9 @@ hash_lookup = {}
 
 
 def init_model():
-    bert = BERTSummariser()
-    return bert
+    bert_summarizer = BERTSummariser()
+    bert_qa = BERTQA()
+    return bert_summarizer, bert_qa
 
 def preprocess_data(url):
     df = get_data(url)
@@ -76,29 +78,15 @@ transcript_text_summary=""
 
 if st.button('Pimp my video!'):
     with st.spinner("Please wait till we make your mind go brr........"):
-        bert_model = init_model()
+        bert_summarizer, bert_qa = init_model()
         transcript_text = preprocess_data(url)
-        transcript_text_summary = bert_model.predict(transcript_text)
+        transcript_text_summary = bert_summarizer.predict(transcript_text)
         
-        st.text_input(":magnifying_glass: Enter your question for QA Model here")
+        st.subheader('BERT Question Answering Model: Query')
+        user_question = st.text_input(":magnifying_glass: Enter your question for QA Model here")
+        answer = bert_qa.predict(user_question)
+        st.subheader('Response / Context')
+        st.write(answer)
         ranges = map_preds_to_ranges(transcript_text_summary)
         st_player(url, ranges=ranges)
         st.write(transcript_text_summary)
-
-#         st_player(url)
-#         st.write(transcript_text_summary)
-        # st.markdown(
-        #     """
-        #     <style>
-        #     .body {
-        #         height:500px;
-        #         overflow:scroll
-        #     }
-        #     </style>
-        #     <div class='body'>{}</div>
-        #     """.format(transcript_text_summary)
-        #     ,
-        #     unsafe_allow_html=True,
-        # )
-
-
